@@ -1,5 +1,7 @@
 package ru.punkoff.fooddelivery.ui.menu.ui.tablayout
 
+import android.view.LayoutInflater
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -8,7 +10,7 @@ import ru.punkoff.fooddelivery.ui.menu.ui.tablayout.fragments.DessertsFragment
 import ru.punkoff.fooddelivery.ui.menu.ui.tablayout.fragments.DrinksFragment
 import ru.punkoff.fooddelivery.ui.menu.ui.tablayout.fragments.PizzaFragment
 
-class PagerAdapter(fragmentActivity: FragmentActivity) :
+class PagerAdapter(private val fragmentActivity: FragmentActivity) :
     FragmentStateAdapter(fragmentActivity) {
 
     override fun createFragment(position: Int): Fragment {

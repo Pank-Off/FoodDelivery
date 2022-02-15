@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.tabs.TabLayoutMediator
 import ru.punkoff.fooddelivery.R
 import ru.punkoff.fooddelivery.databinding.FragmentMenuBinding
@@ -16,6 +17,7 @@ import ru.punkoff.fooddelivery.ui.menu.ui.adapter.BannersAdapter
 import ru.punkoff.fooddelivery.ui.menu.ui.tablayout.FragmentTypeEnum
 import ru.punkoff.fooddelivery.ui.menu.ui.tablayout.PagerAdapter
 import ru.punkoff.fooddelivery.ui.menu.ui.tablayout.TabsAdapter
+
 
 class MenuFragment : Fragment() {
 
@@ -50,9 +52,15 @@ class MenuFragment : Fragment() {
             val pagerAdapter = PagerAdapter(requireActivity())
             viewpager.adapter = pagerAdapter
             TabLayoutMediator(tabLayout, viewpager) { tab, position ->
+
                 when (FragmentTypeEnum.values()[pagerAdapter.getItemViewType(position)]) {
-                    FragmentTypeEnum.PIZZA -> tab.text = getString(R.string.pizza)
-                    FragmentTypeEnum.COMBO -> tab.text = getString(R.string.combo)
+                    FragmentTypeEnum.PIZZA -> {
+                          tab.text = getString(R.string.pizza)
+                    }
+                    FragmentTypeEnum.COMBO -> {
+                         tab.text = getString(R.string.combo)
+                    }
+
                     FragmentTypeEnum.DESSERTS -> tab.text = getString(R.string.desserts)
                     FragmentTypeEnum.DRINKS -> tab.text = getString(R.string.drinks)
                 }

@@ -15,11 +15,14 @@
     </style>
 
     <style name="TabLayoutStyle" parent="Widget.MaterialComponents.TabLayout">
-        <item name="tabIndicator">@android:color/transparent</item>
-        <item name="android:layout_marginStart">@dimen/tab_marginStart</item>
-        <item name="android:layout_marginEnd">@dimen/tab_marginEnd</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/tab_layout_height</item>
+        <item name="android:layout_margin">@dimen/tab_margin</item>
         <item name="tabTextAppearance">@style/TabTextStyle</item>
-
+        <item name="tabMode">scrollable</item>
+        <item name="tabIndicator">@android:color/transparent</item>
+        <item name="tabBackground">@drawable/tab_background</item>
+        <item name="tabMinWidth">@dimen/tab_min_width</item>
     </style>
 
     <style name="TabTextStyle">
