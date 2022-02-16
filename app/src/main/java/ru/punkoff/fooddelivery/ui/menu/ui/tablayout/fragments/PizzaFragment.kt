@@ -1,8 +1,6 @@
 package ru.punkoff.fooddelivery.ui.menu.ui.tablayout.fragments
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -16,8 +14,8 @@ import ru.punkoff.fooddelivery.R
 import ru.punkoff.fooddelivery.databinding.FragmentPizzaBinding
 import ru.punkoff.fooddelivery.model.FoodModel
 import ru.punkoff.fooddelivery.ui.menu.MenuViewState
-import ru.punkoff.fooddelivery.ui.menu.ui.adapter.OnItemClickListener
 import ru.punkoff.fooddelivery.ui.menu.ui.adapter.MenuAdapter
+import ru.punkoff.fooddelivery.ui.menu.ui.adapter.OnItemClickListener
 import ru.punkoff.fooddelivery.ui.menu.viewmodels.MenuViewModel
 
 @AndroidEntryPoint
@@ -47,14 +45,17 @@ class PizzaFragment : Fragment() {
                 MenuViewState.Loading -> menuAdapter.loadingData()
 
                 is MenuViewState.Success -> {
-                    /**
-                     * Убрать Handler перед отправкой!!!
-                     */
-                    Handler(Looper.myLooper()!!).postDelayed({
-                        Log.e(javaClass.simpleName, it.items.toString())
-                        menuAdapter.setData(it.items)
-                    }, 3000)
+                    Log.e(javaClass.simpleName, it.items.toString())
+                    menuAdapter.setData(it.items)
                 }
+                is MenuViewState.ERROR -> Snackbar.make(
+                    view,
+                    getString(R.string.no_internet_msg),
+                    Snackbar.LENGTH_SHORT
+                )
+                    .setAction(
+                        getString(R.string.update)
+                    ) { }.show()
             }
         }
         with(binding) {
@@ -65,7 +66,7 @@ class PizzaFragment : Fragment() {
                     Log.e(javaClass.simpleName, model.toString())
                     Snackbar.make(view, getString(R.string.add_to_cart), Snackbar.LENGTH_SHORT)
                         .setAction(
-                            "Ок"
+                            getString(R.string.ok)
                         ) { }.show()
                     viewModel.insertToCart(model)
                 }

@@ -1,5 +1,6 @@
 package ru.punkoff.fooddelivery.repository
 
+import kotlinx.coroutines.delay
 import ru.punkoff.fooddelivery.model.FoodModel
 import ru.punkoff.fooddelivery.room.FoodDao
 import ru.punkoff.fooddelivery.ui.menu.MenuViewState
@@ -24,6 +25,7 @@ class LocalRepositoryImpl @Inject constructor(private val dao: FoodDao) : LocalR
     override suspend fun getMenuCached(): MenuViewState {
         //Апи оказалось платным, 150 запросов в день можно бесплатно
         //поэтому для дальнейшей отладки использую заглушки
+        delay(3000)
         return MenuViewState.Success(
             listOf(
                 FoodModel(
