@@ -5,18 +5,35 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.google.android.material.button.MaterialButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:background="?selectableItemBackground"
-        android:backgroundTint="@color/white"
-        android:drawableEnd="@drawable/ic_arrow_down"
-        android:outlineProvider="none"
-        android:text="@string/moscow"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="16sp" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/city_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:background="?selectableItemBackground"
+            android:backgroundTint="@color/white"
+            android:drawableEnd="@drawable/ic_arrow_down"
+            android:outlineProvider="none"
+            android:text="@string/moscow"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/ic_qr_code"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"

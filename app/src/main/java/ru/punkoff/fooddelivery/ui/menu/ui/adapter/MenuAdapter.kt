@@ -7,7 +7,7 @@ import ru.punkoff.fooddelivery.databinding.ItemPizzaBinding
 import ru.punkoff.fooddelivery.model.FoodModel
 import ru.punkoff.fooddelivery.utils.PicassoLoader
 
-class PizzaAdapter : RecyclerView.Adapter<PizzaAdapter.PizzaViewHolder>() {
+class MenuAdapter : RecyclerView.Adapter<MenuAdapter.PizzaViewHolder>() {
 
     private var data = listOf<FoodModel>()
 
@@ -16,6 +16,11 @@ class PizzaAdapter : RecyclerView.Adapter<PizzaAdapter.PizzaViewHolder>() {
 
     fun attachListener(listener: OnItemClickListener) {
         onItemClickListener = listener
+    }
+
+    fun loadingData() {
+        isShimmer = true
+        notifyDataSetChanged()
     }
 
     fun setData(data: List<FoodModel>) {

@@ -13,7 +13,7 @@ import ru.punkoff.fooddelivery.MainActivity
 import ru.punkoff.fooddelivery.R
 import ru.punkoff.fooddelivery.databinding.FragmentCartBinding
 import ru.punkoff.fooddelivery.ui.menu.MenuViewState
-import ru.punkoff.fooddelivery.ui.menu.ui.adapter.PizzaAdapter
+import ru.punkoff.fooddelivery.ui.menu.ui.adapter.MenuAdapter
 
 @AndroidEntryPoint
 class CartFragment : Fragment() {
@@ -23,13 +23,12 @@ class CartFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: CartViewModel by viewModels()
-    private val adapter = PizzaAdapter()
+    private val adapter = MenuAdapter()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentCartBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -44,9 +43,10 @@ class CartFragment : Fragment() {
                     MenuViewState.EMPTY -> {
                         withOrdersLayout.root.visibility = View.GONE
                         emptyLayout.root.visibility = View.VISIBLE
-
                     }
-                    MenuViewState.Loading -> Unit
+                    MenuViewState.Loading -> {
+                        adapter.loadingData()
+                    }
                     is MenuViewState.Success -> {
                         withOrdersLayout.root.visibility = View.VISIBLE
                         emptyLayout.root.visibility = View.GONE
@@ -74,7 +74,7 @@ class CartFragment : Fragment() {
                 viewModel.clearOrders()
                 Snackbar.make(view, getString(R.string.thanks_for_order), Snackbar.LENGTH_SHORT)
                     .setAction(
-                        "Ок"
+                        getString(R.string.ok)
                     ) { }.show()
             }
         }

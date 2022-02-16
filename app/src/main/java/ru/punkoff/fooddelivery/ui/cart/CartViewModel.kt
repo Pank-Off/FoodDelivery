@@ -14,7 +14,7 @@ class CartViewModel @Inject constructor(
     private val repo: Repository
 ) : BaseViewModel() {
 
-    private val cartLiveData = MutableLiveData<MenuViewState>(MenuViewState.EMPTY)
+    private val cartLiveData = MutableLiveData<MenuViewState>(MenuViewState.Loading)
     fun requestData() {
         cancelJob()
         viewModelCoroutineScope.launch(Dispatchers.IO) {

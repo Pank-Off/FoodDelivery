@@ -13,14 +13,12 @@ import ru.punkoff.fooddelivery.databinding.FragmentMenuBinding
 import ru.punkoff.fooddelivery.ui.menu.ui.adapter.BannersAdapter
 import ru.punkoff.fooddelivery.ui.menu.ui.tablayout.FragmentTypeEnum
 import ru.punkoff.fooddelivery.ui.menu.ui.tablayout.PagerAdapter
-import ru.punkoff.fooddelivery.ui.menu.ui.tablayout.TabsAdapter
 
 class MenuFragment : Fragment() {
 
     private var _binding: FragmentMenuBinding? = null
 
     private val bannersAdapter = BannersAdapter()
-    private val tabsAdapter = TabsAdapter()
 
     private val binding get() = _binding!!
 
@@ -38,7 +36,6 @@ class MenuFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupBanners()
         setupTabs()
-
     }
 
     private fun setupTabs() {
@@ -48,13 +45,8 @@ class MenuFragment : Fragment() {
             TabLayoutMediator(tabLayout, viewpager) { tab, position ->
 
                 when (FragmentTypeEnum.values()[pagerAdapter.getItemViewType(position)]) {
-                    FragmentTypeEnum.PIZZA -> {
-                        tab.text = getString(R.string.pizza)
-                    }
-                    FragmentTypeEnum.COMBO -> {
-                        tab.text = getString(R.string.combo)
-                    }
-
+                    FragmentTypeEnum.PIZZA -> tab.text = getString(R.string.pizza)
+                    FragmentTypeEnum.COMBO -> tab.text = getString(R.string.combo)
                     FragmentTypeEnum.DESSERTS -> tab.text = getString(R.string.desserts)
                     FragmentTypeEnum.DRINKS -> tab.text = getString(R.string.drinks)
                 }
@@ -66,18 +58,15 @@ class MenuFragment : Fragment() {
         with(binding) {
             bannersRecycler.layoutManager =
                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            bannersAdapter.setData(
-                listOf(
-                    ContextCompat.getDrawable(
-                        requireContext(),
-                        R.drawable.banners_item
-                    ),
-                    ContextCompat.getDrawable(requireContext(), R.drawable.banners_item),
-                    ContextCompat.getDrawable(requireContext(), R.drawable.banners_item),
-                    ContextCompat.getDrawable(requireContext(), R.drawable.banners_item),
-                    ContextCompat.getDrawable(requireContext(), R.drawable.banners_item)
-                )
+
+            val data = listOf(
+                ContextCompat.getDrawable(requireContext(), R.drawable.banners_item),
+                ContextCompat.getDrawable(requireContext(), R.drawable.banners_item),
+                ContextCompat.getDrawable(requireContext(), R.drawable.banners_item),
+                ContextCompat.getDrawable(requireContext(), R.drawable.banners_item),
+                ContextCompat.getDrawable(requireContext(), R.drawable.banners_item)
             )
+            bannersAdapter.setData(data)
 
             bannersRecycler.adapter = bannersAdapter
         }

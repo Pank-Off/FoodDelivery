@@ -15,7 +15,7 @@ class MenuViewModel @Inject constructor(
     private val repo: Repository
 ) : BaseViewModel() {
 
-    private val menuLiveData = MutableLiveData<MenuViewState>(MenuViewState.EMPTY)
+    private val menuLiveData = MutableLiveData<MenuViewState>(MenuViewState.Loading)
     fun requestData() {
         cancelJob()
         viewModelCoroutineScope.launch(Dispatchers.IO) {

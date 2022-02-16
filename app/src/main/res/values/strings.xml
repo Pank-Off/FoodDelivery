@@ -10,7 +10,7 @@
     <string name="drinks">Напитки</string>
     <string name="ham_and_mushrooms">Ветчина и грибы</string>
     <string name="description_ham_and_mushrooms">Ветчина,шампиньоны, увеличинная порция моцареллы, томатный соус</string>
-    
+
     <string name="bavarian_sausages">Баварские колбаски</string>
     <string name="description_bavarian_sausages">Баварские колбаски, ветчина,пикантная пепперони, острая чоризо,томатный соус</string>
 
@@ -22,5 +22,6 @@
     <string name="add_to_cart">Добавлено в корзину</string>
     <string name="deliver">Заказать</string>
     <string name="thanks_for_order">Спасибо за заказ!</string>
+    <string name="ok">Ок</string>
 
 </resources>

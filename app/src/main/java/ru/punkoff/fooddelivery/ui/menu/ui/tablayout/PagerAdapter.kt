@@ -1,7 +1,5 @@
 package ru.punkoff.fooddelivery.ui.menu.ui.tablayout
 
-import android.view.LayoutInflater
-import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
