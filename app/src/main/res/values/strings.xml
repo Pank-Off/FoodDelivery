@@ -16,5 +16,8 @@
 
     <string name="tender_salmon">Нежный лосось</string>
     <string name="description_tender_salmon">Лосось, томаты, оливки,соус песто,помидорки черри</string>
+    <string name="ohh_empty">Ой, пусто!</string>
+    <string name="description_to_empty_cart">Ваша корзина пуста, добавьте понравившийся товар из \"Меню\".</string>
+    <string name="navigate_to_menu">Перейти в меню</string>
 
 </resources>
