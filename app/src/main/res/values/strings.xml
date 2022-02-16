@@ -19,5 +19,8 @@
     <string name="ohh_empty">Ой, пусто!</string>
     <string name="description_to_empty_cart">Ваша корзина пуста, добавьте понравившийся товар из \"Меню\".</string>
     <string name="navigate_to_menu">Перейти в меню</string>
+    <string name="add_to_cart">Добавлено в корзину</string>
+    <string name="deliver">Заказать</string>
+    <string name="thanks_for_order">Спасибо за заказ!</string>
 
 </resources>

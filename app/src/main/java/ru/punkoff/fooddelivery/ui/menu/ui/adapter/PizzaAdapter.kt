@@ -11,7 +11,13 @@ class PizzaAdapter : RecyclerView.Adapter<PizzaAdapter.PizzaViewHolder>() {
 
     private var data = listOf<FoodModel>()
 
+    private lateinit var onItemClickListener: OnItemClickListener
     private var isShimmer = true
+
+    fun attachListener(listener: OnItemClickListener) {
+        onItemClickListener = listener
+    }
+
     fun setData(data: List<FoodModel>) {
         this.data = data
         isShimmer = false
@@ -26,7 +32,7 @@ class PizzaAdapter : RecyclerView.Adapter<PizzaAdapter.PizzaViewHolder>() {
         if (isShimmer) {
             holder.startShimmer()
         } else {
-            holder.bind(position)
+            holder.bind(data[position])
         }
     }
 
@@ -37,16 +43,22 @@ class PizzaAdapter : RecyclerView.Adapter<PizzaAdapter.PizzaViewHolder>() {
             LayoutInflater.from(parent.context), parent, false
         )
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(position: Int) {
+        fun bind(item: FoodModel) {
             with(binding) {
                 shimmer.stopShimmer()
                 shimmer.setShimmer(null)
                 shimmer.isClickable = true
                 priceBtn.isClickable = true
-                PicassoLoader.loadImage(data[position].imageUrl, image)
-                title.text = data[position].title
-                description.text = data[position].description
-                priceBtn.text = "от ${data[position].price} р"
+                PicassoLoader.loadImage(item.imageUrl, image)
+                title.text = item.title
+                description.text = item.description
+                priceBtn.text = "от ${item.price} р"
+
+                priceBtn.setOnClickListener {
+                    if (::onItemClickListener.isInitialized) {
+                        onItemClickListener.onClick(item)
+                    }
+                }
             }
         }
 

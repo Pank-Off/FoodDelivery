@@ -2,11 +2,12 @@ package ru.punkoff.fooddelivery.repository
 
 import ru.punkoff.fooddelivery.model.FoodModel
 import ru.punkoff.fooddelivery.retrofit.DeliveryApi
+import ru.punkoff.fooddelivery.room.FoodDao
 import ru.punkoff.fooddelivery.ui.menu.MenuViewState
-import java.util.logging.Handler
 import javax.inject.Inject
 
-class RepositoryImpl @Inject constructor(private val api: DeliveryApi) : Repository {
+class RepositoryImpl @Inject constructor(private val api: DeliveryApi, private val dao: FoodDao) :
+    Repository {
 
     override suspend fun getMenu(): MenuViewState {
         val data = mutableListOf<FoodModel>()
@@ -64,5 +65,22 @@ class RepositoryImpl @Inject constructor(private val api: DeliveryApi) : Reposit
 
 
         return state
+    }
+
+    override suspend fun insertToCart(model: FoodModel) {
+        dao.insert(model)
+    }
+
+    override suspend fun getOrders(): MenuViewState {
+        val data = dao.getOrders()
+
+        return if (data.isEmpty()) {
+            MenuViewState.EMPTY
+        } else return MenuViewState.Success(data)
+    }
+
+    override suspend fun clearOrders(): MenuViewState {
+        dao.dropOrders()
+        return MenuViewState.EMPTY
     }
 }
