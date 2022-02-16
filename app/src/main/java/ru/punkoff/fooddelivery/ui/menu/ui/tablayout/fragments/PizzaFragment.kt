@@ -1,6 +1,8 @@
 package ru.punkoff.fooddelivery.ui.menu.ui.tablayout.fragments
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -38,10 +40,15 @@ class PizzaFragment : Fragment() {
         viewModel.observeLiveData().observe(viewLifecycleOwner) {
             when (it) {
                 MenuViewState.EMPTY -> {}
-                MenuViewState.Loading -> TODO()
+                MenuViewState.Loading -> {}
                 is MenuViewState.Success -> {
-                    Log.e(javaClass.simpleName, it.items.toString())
-                    pizzaAdapter.setData(it.items)
+                    /**
+                     * Убрать Handler перед отправкой!!!
+                     */
+                    Handler(Looper.myLooper()!!).postDelayed({
+                        Log.e(javaClass.simpleName, it.items.toString())
+                        pizzaAdapter.setData(it.items)
+                    }, 5000)
                 }
             }
         }
