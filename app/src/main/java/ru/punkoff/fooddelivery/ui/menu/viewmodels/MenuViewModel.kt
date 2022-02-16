@@ -31,4 +31,10 @@ class MenuViewModel @Inject constructor(
     }
 
     fun observeLiveData() = menuLiveData
+    fun getCachedData() {
+        cancelJob()
+        viewModelCoroutineScope.launch(Dispatchers.IO) {
+            menuLiveData.postValue(repo.getCachedData())
+        }
+    }
 }

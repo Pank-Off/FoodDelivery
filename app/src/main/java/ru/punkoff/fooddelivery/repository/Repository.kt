@@ -8,4 +8,5 @@ interface Repository {
     suspend fun insertToCart(model: FoodModel)
     suspend fun getOrders(): MenuViewState
     suspend fun clearOrders(): MenuViewState
+    suspend fun getCachedData():MenuViewState
 }

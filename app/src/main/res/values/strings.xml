@@ -25,5 +25,6 @@
     <string name="ok">Ок</string>
     <string name="update">Обновить</string>
     <string name="no_internet_msg">Нет подключения к интернету\nПроверьте соединение</string>
+    <string name="network_exception">На сервере технические неполадки\nУже чиним!</string>
 
 </resources>

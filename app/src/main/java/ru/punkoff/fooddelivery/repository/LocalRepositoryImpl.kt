@@ -1,6 +1,7 @@
 package ru.punkoff.fooddelivery.repository
 
 import kotlinx.coroutines.delay
+import ru.punkoff.fooddelivery.model.CachedFood
 import ru.punkoff.fooddelivery.model.FoodModel
 import ru.punkoff.fooddelivery.room.FoodDao
 import ru.punkoff.fooddelivery.ui.menu.MenuViewState
@@ -23,6 +24,9 @@ class LocalRepositoryImpl @Inject constructor(private val dao: FoodDao) : LocalR
     }
 
     override suspend fun getMenuCached(): MenuViewState {
+        val data = dao.getCached()
+
+        return MenuViewState.Success(data[0].data)
         //Апи оказалось платным, 150 запросов в день можно бесплатно
         //поэтому для дальнейшей отладки использую заглушки
         delay(3000)
@@ -60,5 +64,10 @@ class LocalRepositoryImpl @Inject constructor(private val dao: FoodDao) : LocalR
                 ),
             )
         )
+    }
+
+    override suspend fun saveCached(items: List<FoodModel>) {
+        dao.dropCached()
+        dao.saveCached(CachedFood(items))
     }
 }

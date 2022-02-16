@@ -7,5 +7,6 @@ interface LocalRepository {
     suspend fun insertToCart(model: FoodModel)
     suspend fun getOrders(): MenuViewState
     suspend fun clearOrders(): MenuViewState
-    suspend fun getMenuCached():MenuViewState
+    suspend fun getMenuCached(): MenuViewState
+    suspend fun saveCached(items: List<FoodModel>)
 }

@@ -9,13 +9,13 @@ class RepositoryImpl @Inject constructor(
     private val networkRepository: NetworkRepository
 ) : Repository {
 
-    private val isOnline = false
     override suspend fun getMenu(): MenuViewState {
-        return if (isOnline) {
-            networkRepository.getMenu()
-        } else {
-            localRepository.getMenuCached()
+        val state = networkRepository.getMenu()
+
+        if (state is MenuViewState.Success) {
+            localRepository.saveCached(state.items)
         }
+        return state
     }
 
     override suspend fun insertToCart(model: FoodModel) {
@@ -28,5 +28,9 @@ class RepositoryImpl @Inject constructor(
 
     override suspend fun clearOrders(): MenuViewState {
         return localRepository.clearOrders()
+    }
+
+    override suspend fun getCachedData(): MenuViewState {
+        return localRepository.getMenuCached()
     }
 }
