@@ -1,19 +1,16 @@
 package ru.punkoff.fooddelivery.ui.menu.ui.adapter
 
-import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import ru.punkoff.fooddelivery.databinding.ItemBannerBinding
 import ru.punkoff.fooddelivery.databinding.ItemPizzaBinding
-import ru.punkoff.fooddelivery.databinding.ItemTabBinding
-import ru.punkoff.fooddelivery.model.PizzaModel
+import ru.punkoff.fooddelivery.model.FoodModel
 
 class PizzaAdapter : RecyclerView.Adapter<PizzaAdapter.PizzaViewHolder>() {
 
-    private var data = listOf<PizzaModel>()
+    private var data = listOf<FoodModel>()
 
-    fun setData(data: List<PizzaModel>) {
+    fun setData(data: List<FoodModel>) {
         this.data = data
         notifyDataSetChanged()
     }
@@ -35,7 +32,7 @@ class PizzaAdapter : RecyclerView.Adapter<PizzaAdapter.PizzaViewHolder>() {
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(position: Int) {
             with(binding) {
-                image.setImageDrawable(data[position].image)
+                //image.setImageDrawable(data[position].imageUrl)
                 title.text = data[position].title
                 description.text = data[position].description
                 priceBtn.text = "от ${data[position].price} р"

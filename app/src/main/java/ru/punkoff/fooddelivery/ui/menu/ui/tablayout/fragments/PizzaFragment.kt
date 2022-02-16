@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.punkoff.fooddelivery.R
 import ru.punkoff.fooddelivery.databinding.FragmentPizzaBinding
-import ru.punkoff.fooddelivery.model.PizzaModel
+import ru.punkoff.fooddelivery.model.FoodModel
 import ru.punkoff.fooddelivery.ui.menu.ui.adapter.PizzaAdapter
 
 class PizzaFragment : Fragment() {
@@ -32,46 +32,46 @@ class PizzaFragment : Fragment() {
 
         pizzaAdapter.setData(
             listOf(
-                PizzaModel(
+                FoodModel(
                     getString(R.string.ham_and_mushrooms),
                     getString(R.string.description_ham_and_mushrooms),
-                    image = ContextCompat.getDrawable(requireContext(), R.drawable.pizza_1)!!
+                    imageUrl = " "
                 ),
 
-                PizzaModel(
+                FoodModel(
                     getString(R.string.tender_salmon),
                     getString(R.string.tender_salmon),
-                    image = ContextCompat.getDrawable(requireContext(), R.drawable.pizza_2)!!
+                    imageUrl = " "
                 ),
 
-                PizzaModel(
+                FoodModel(
                     getString(R.string.ham_and_mushrooms),
                     getString(R.string.description_ham_and_mushrooms),
-                    image = ContextCompat.getDrawable(requireContext(), R.drawable.pizza_1)!!
+                    imageUrl = " "
                 ),
 
-                PizzaModel(
+                FoodModel(
                     getString(R.string.tender_salmon),
                     getString(R.string.tender_salmon),
-                    image = ContextCompat.getDrawable(requireContext(), R.drawable.pizza_2)!!
+                    imageUrl = " "
                 ),
 
-                PizzaModel(
+                FoodModel(
                     getString(R.string.ham_and_mushrooms),
                     getString(R.string.description_ham_and_mushrooms),
-                    image = ContextCompat.getDrawable(requireContext(), R.drawable.pizza_1)!!
+                    imageUrl = " "
                 ),
 
-                PizzaModel(
+                FoodModel(
                     getString(R.string.tender_salmon),
                     getString(R.string.tender_salmon),
-                    image = ContextCompat.getDrawable(requireContext(), R.drawable.pizza_2)!!
+                    imageUrl = " "
                 ),
 
-                PizzaModel(
+                FoodModel(
                     getString(R.string.ham_and_mushrooms),
                     getString(R.string.description_ham_and_mushrooms),
-                    image = ContextCompat.getDrawable(requireContext(), R.drawable.pizza_1)!!
+                    imageUrl = " "
                 )
             )
         )

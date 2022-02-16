@@ -1,24 +1,26 @@
 package ru.punkoff.fooddelivery.ui.menu.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.button.MaterialButton
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 import ru.punkoff.fooddelivery.R
 import ru.punkoff.fooddelivery.databinding.FragmentMenuBinding
-import ru.punkoff.fooddelivery.ui.menu.MenuViewModel
+import ru.punkoff.fooddelivery.ui.menu.MenuViewState
 import ru.punkoff.fooddelivery.ui.menu.ui.adapter.BannersAdapter
 import ru.punkoff.fooddelivery.ui.menu.ui.tablayout.FragmentTypeEnum
 import ru.punkoff.fooddelivery.ui.menu.ui.tablayout.PagerAdapter
 import ru.punkoff.fooddelivery.ui.menu.ui.tablayout.TabsAdapter
+import ru.punkoff.fooddelivery.ui.menu.viewmodels.MenuViewModel
 
-
+@AndroidEntryPoint
 class MenuFragment : Fragment() {
 
     private var _binding: FragmentMenuBinding? = null
@@ -28,13 +30,12 @@ class MenuFragment : Fragment() {
 
     private val binding get() = _binding!!
 
+    private val viewModel: MenuViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(MenuViewModel::class.java)
 
         _binding = FragmentMenuBinding.inflate(inflater, container, false)
         return binding.root
@@ -44,7 +45,15 @@ class MenuFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupBanners()
         setupTabs()
+        viewModel.requestData()
 
+        viewModel.observeLiveData().observe(viewLifecycleOwner) {
+            when (it) {
+                MenuViewState.EMPTY -> {}
+                MenuViewState.Loading -> TODO()
+                is MenuViewState.Success -> Log.e(javaClass.simpleName, it.items[0].toString())
+            }
+        }
     }
 
     private fun setupTabs() {
@@ -55,10 +64,10 @@ class MenuFragment : Fragment() {
 
                 when (FragmentTypeEnum.values()[pagerAdapter.getItemViewType(position)]) {
                     FragmentTypeEnum.PIZZA -> {
-                          tab.text = getString(R.string.pizza)
+                        tab.text = getString(R.string.pizza)
                     }
                     FragmentTypeEnum.COMBO -> {
-                         tab.text = getString(R.string.combo)
+                        tab.text = getString(R.string.combo)
                     }
 
                     FragmentTypeEnum.DESSERTS -> tab.text = getString(R.string.desserts)
