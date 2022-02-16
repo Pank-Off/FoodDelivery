@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.punkoff.fooddelivery.databinding.ItemPizzaBinding
 import ru.punkoff.fooddelivery.model.FoodModel
+import ru.punkoff.fooddelivery.utils.PicassoLoader
 
 class PizzaAdapter : RecyclerView.Adapter<PizzaAdapter.PizzaViewHolder>() {
 
@@ -32,7 +33,7 @@ class PizzaAdapter : RecyclerView.Adapter<PizzaAdapter.PizzaViewHolder>() {
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(position: Int) {
             with(binding) {
-                //image.setImageDrawable(data[position].imageUrl)
+                PicassoLoader.loadImage(data[position].imageUrl,image)
                 title.text = data[position].title
                 description.text = data[position].description
                 priceBtn.text = "от ${data[position].price} р"

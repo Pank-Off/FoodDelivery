@@ -10,7 +10,7 @@ interface DeliveryApi {
 
     @GET("food/menuItems/{id}?")
     fun getMenuItem(
-        @Path("id") foodId: Long,
+        @Path("id") foodId: Int,
         @Query("apiKey") apiKey: String = DELIVERY_API_KEY
     ): Deferred<FoodModel>
 }
