@@ -14,6 +14,7 @@ import ru.punkoff.fooddelivery.R
 import ru.punkoff.fooddelivery.databinding.FragmentCartBinding
 import ru.punkoff.fooddelivery.ui.menu.MenuViewState
 import ru.punkoff.fooddelivery.ui.menu.ui.adapter.MenuAdapter
+import ru.punkoff.fooddelivery.utils.isOnline
 
 @AndroidEntryPoint
 class CartFragment : Fragment() {
@@ -67,15 +68,24 @@ class CartFragment : Fragment() {
                 }
             }
             emptyLayout.navigateToMenuBtn.setOnClickListener {
-                (requireActivity() as MainActivity).navigateTo(R.id.navigation_menu)
+                (requireActivity() as MainActivity).navigateToMainMenu()
             }
 
             withOrdersLayout.deliverBtn.setOnClickListener {
-                viewModel.clearOrders()
-                Snackbar.make(view, getString(R.string.thanks_for_order), Snackbar.LENGTH_SHORT)
-                    .setAction(
-                        getString(R.string.ok)
-                    ) { }.show()
+                if(isOnline(requireContext())) {
+                    viewModel.clearOrders()
+                    Snackbar.make(view, getString(R.string.thanks_for_order), Snackbar.LENGTH_SHORT)
+                        .setAction(
+                            getString(R.string.ok)
+                        ) { }.show()
+                }else{
+                    Snackbar.make(
+                        view,
+                        getString(R.string.no_internet_msg),
+                        Snackbar.LENGTH_LONG
+                    )
+                        .setAction(getString(R.string.ok)) {}.show()
+                }
             }
         }
     }

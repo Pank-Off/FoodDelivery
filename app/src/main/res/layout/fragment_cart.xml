@@ -8,10 +8,10 @@
     <include
         android:id="@+id/empty_layout"
         layout="@layout/empty_cart_layout"
-        android:visibility="visible" />
+        android:visibility="gone" />
 
     <include
         android:id="@+id/with_orders_layout"
         layout="@layout/cart_with_orders_layout"
-        android:visibility="gone" />
+        android:visibility="visible" />
 </FrameLayout>

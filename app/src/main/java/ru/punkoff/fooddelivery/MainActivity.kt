@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
-    fun navigateTo(@IdRes int: Int) {
-        navController.navigate(int)
+    fun navigateToMainMenu() {
+        navController.popBackStack()
     }
 }

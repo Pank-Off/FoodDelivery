@@ -66,7 +66,7 @@ class PizzaFragment : Fragment() {
                         is HttpException -> {
                             viewModel.getCachedData()
                             Snackbar.make(
-                                requireActivity().window.decorView,
+                                view,
                                 getString(R.string.network_exception), Snackbar.LENGTH_SHORT
                             )
                                 .setAction(getString(R.string.update)) { viewModel.requestData() }

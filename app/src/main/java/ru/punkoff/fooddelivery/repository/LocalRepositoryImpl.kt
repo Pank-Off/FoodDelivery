@@ -24,9 +24,14 @@ class LocalRepositoryImpl @Inject constructor(private val dao: FoodDao) : LocalR
     }
 
     override suspend fun getMenuCached(): MenuViewState {
-        val data = dao.getCached()
 
-        return MenuViewState.Success(data[0].data)
+        /**Раскомментировать перед отправкой! */
+     //   val data = dao.getCached()
+
+   //     return MenuViewState.Success(data[0].data)
+
+
+        /**УДАЛИТЬ ПЕРЕД ОТПРАВКОЙ*/
         //Апи оказалось платным, 150 запросов в день можно бесплатно
         //поэтому для дальнейшей отладки использую заглушки
         delay(3000)
