@@ -4,6 +4,7 @@ import retrofit2.HttpException
 import ru.punkoff.fooddelivery.model.FoodModel
 import ru.punkoff.fooddelivery.retrofit.DeliveryApi
 import ru.punkoff.fooddelivery.ui.menu.MenuViewState
+import java.net.UnknownHostException
 import javax.inject.Inject
 
 class NetworkRepositoryImpl @Inject constructor(private val api: DeliveryApi) : NetworkRepository {
@@ -20,6 +21,9 @@ class NetworkRepositoryImpl @Inject constructor(private val api: DeliveryApi) : 
             }
             MenuViewState.Success(data)
         } catch (exc: HttpException) {
+            exc.printStackTrace()
+            MenuViewState.ERROR(exc)
+        } catch (exc:UnknownHostException){
             exc.printStackTrace()
             MenuViewState.ERROR(exc)
         }

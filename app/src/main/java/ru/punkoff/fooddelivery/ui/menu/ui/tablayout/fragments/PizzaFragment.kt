@@ -21,6 +21,7 @@ import ru.punkoff.fooddelivery.ui.menu.ui.adapter.OnItemClickListener
 import ru.punkoff.fooddelivery.ui.menu.viewmodels.MenuViewModel
 import ru.punkoff.fooddelivery.utils.isOnline
 import java.net.SocketTimeoutException
+import java.net.UnknownHostException
 
 
 @AndroidEntryPoint
@@ -42,9 +43,9 @@ class PizzaFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (isOnline(requireContext())) {
+        if (savedInstanceState == null && isOnline(requireContext())) {
             viewModel.requestData()
-        } else {
+        } else if(!isOnline(requireContext())) {
             viewModel.getCachedData()
             Snackbar.make(
                 requireActivity().window.decorView,
@@ -62,11 +63,13 @@ class PizzaFragment : Fragment() {
                 is MenuViewState.Success -> {
                     Log.e(javaClass.simpleName, it.items.toString())
                     menuAdapter.setData(it.items)
+                    binding.swipeRefreshLayout.isRefreshing = false
                 }
                 is MenuViewState.ERROR -> {
+                    viewModel.getCachedData()
                     when (it.exc) {
                         is HttpException -> {
-                            viewModel.getCachedData()
+                            binding.swipeRefreshLayout.isRefreshing = false
                             Snackbar.make(
                                 view,
                                 getString(R.string.network_exception), Snackbar.LENGTH_SHORT
@@ -75,8 +78,7 @@ class PizzaFragment : Fragment() {
                                 .show()
                         }
 
-                        is SocketTimeoutException -> {
-                            viewModel.getCachedData()
+                        is SocketTimeoutException, is UnknownHostException -> {
                             Snackbar.make(
                                 view,
                                 getString(R.string.no_internet_msg), Snackbar.LENGTH_SHORT
@@ -105,6 +107,10 @@ class PizzaFragment : Fragment() {
             val dividerItemDecoration = DividerItemDecoration(context, LinearLayoutManager.VERTICAL)
             pizzaRecycler.addItemDecoration(dividerItemDecoration)
             pizzaRecycler.adapter = menuAdapter
+
+            swipeRefreshLayout.setOnRefreshListener {
+                viewModel.requestData()
+            }
         }
     }
 
