@@ -10,11 +10,8 @@ class RepositoryImpl @Inject constructor(
 ) : Repository {
 
     override suspend fun getMenu(): MenuViewState {
+        val state = networkRepository.getMenu()
 
-        /**Использовать network, getCached тут в качестве заглушки, пока апи не доступно!*/
-       // val state = networkRepository.getMenu()
-
-        val state = localRepository.getMenuCached()
         if (state is MenuViewState.Success) {
             localRepository.saveCached(state.items)
         }

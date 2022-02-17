@@ -3,6 +3,7 @@ package ru.punkoff.fooddelivery.ui.menu.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import ru.punkoff.fooddelivery.R
 import ru.punkoff.fooddelivery.databinding.ItemPizzaBinding
 import ru.punkoff.fooddelivery.model.FoodModel
 import ru.punkoff.fooddelivery.utils.PicassoLoader
@@ -56,9 +57,11 @@ class MenuAdapter : RecyclerView.Adapter<MenuAdapter.PizzaViewHolder>() {
                 priceBtn.isClickable = true
                 PicassoLoader.loadImage(item.imageUrl, image)
                 title.text = item.title
-                description.text = item.description
-                priceBtn.text = "от ${item.price} р"
-
+                description.text =
+                    item.description ?: root.context.getString(R.string.descriptionis_empty)
+                priceBtn.text = item.price?.let {
+                    "от ${item.price} р"
+                } ?: root.context.getString(R.string.price_is_empty)
                 priceBtn.setOnClickListener {
                     if (::onItemClickListener.isInitialized) {
                         onItemClickListener.onClick(item)

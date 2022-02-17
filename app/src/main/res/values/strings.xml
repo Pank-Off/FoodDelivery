@@ -26,5 +26,7 @@
     <string name="update">Обновить</string>
     <string name="no_internet_msg">Нет подключения к интернету\nПроверьте соединение</string>
     <string name="network_exception">На сервере технические неполадки\nУже чиним!</string>
+    <string name="descriptionis_empty">Описание отсутствует</string>
+    <string name="price_is_empty">Цена не указана</string>
 
 </resources>
