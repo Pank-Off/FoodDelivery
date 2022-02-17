@@ -61,7 +61,8 @@ class CartFragment : Fragment() {
                                     false
                                 )
                             adapter.setData(it.items)
-                            val dividerItemDecoration = DividerItemDecoration(context, LinearLayoutManager.VERTICAL)
+                            val dividerItemDecoration =
+                                DividerItemDecoration(context, LinearLayoutManager.VERTICAL)
                             ordersRecycler.addItemDecoration(dividerItemDecoration)
                             ordersRecycler.adapter = adapter
                         }
@@ -74,13 +75,13 @@ class CartFragment : Fragment() {
             }
 
             withOrdersLayout.deliverBtn.setOnClickListener {
-                if(isOnline(requireContext())) {
+                if (isOnline(requireContext())) {
                     viewModel.clearOrders()
                     Snackbar.make(view, getString(R.string.thanks_for_order), Snackbar.LENGTH_SHORT)
                         .setAction(
                             getString(R.string.ok)
                         ) { }.show()
-                }else{
+                } else {
                     Snackbar.make(
                         view,
                         getString(R.string.no_internet_msg),

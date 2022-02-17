@@ -44,7 +44,7 @@ class PizzaFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         if (savedInstanceState == null && isOnline(requireContext())) {
             viewModel.requestData()
-        } else if(!isOnline(requireContext())) {
+        } else if (savedInstanceState == null && !isOnline(requireContext())) {
             viewModel.getCachedData()
             Snackbar.make(
                 requireActivity().window.decorView,
