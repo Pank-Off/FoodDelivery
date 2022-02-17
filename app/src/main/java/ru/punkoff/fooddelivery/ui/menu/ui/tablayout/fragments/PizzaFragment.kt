@@ -23,7 +23,6 @@ import ru.punkoff.fooddelivery.utils.isOnline
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
-
 @AndroidEntryPoint
 class PizzaFragment : Fragment() {
 

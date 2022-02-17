@@ -20,7 +20,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun providePracticumServices(
+    fun provideDeliveryService(
         okHttpClient: OkHttpClient,
         gson: Gson,
     ): DeliveryApi {

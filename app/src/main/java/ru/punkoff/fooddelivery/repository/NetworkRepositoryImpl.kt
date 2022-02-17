@@ -23,7 +23,7 @@ class NetworkRepositoryImpl @Inject constructor(private val api: DeliveryApi) : 
         } catch (exc: HttpException) {
             exc.printStackTrace()
             MenuViewState.ERROR(exc)
-        } catch (exc:UnknownHostException){
+        } catch (exc: UnknownHostException) {
             exc.printStackTrace()
             MenuViewState.ERROR(exc)
         }
