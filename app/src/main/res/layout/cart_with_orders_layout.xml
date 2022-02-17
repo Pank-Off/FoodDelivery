@@ -18,7 +18,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="70dp"
             android:backgroundTint="@color/main_color_20"
             android:outlineProvider="none"
             android:text="@string/deliver"
