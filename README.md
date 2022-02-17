@@ -11,3 +11,5 @@
 <li>Retrofit
 <li>Room
 <li>Picasso
+
+Используемое API: https://spoonacular.com/food-api
