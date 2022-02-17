@@ -12,8 +12,8 @@
 
         <ImageView
             android:id="@+id/empty_cart_image"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
+            android:layout_width="@dimen/empty_cart_main_image_size"
+            android:layout_height="@dimen/empty_cart_main_image_size"
             android:layout_gravity="center"
             android:layout_marginTop="100dp"
             android:src="@drawable/dodo_empty_cart" />
@@ -42,16 +42,13 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/navigate_to_menu_btn"
+            style="@style/OutlinedButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:backgroundTint="@color/main_color_20"
-            android:outlineProvider="none"
-            android:text="@string/navigate_to_menu"
-            android:textColor="@color/main_color"
-            android:textSize="13sp"
-            android:textStyle="bold" />
+            android:text="@string/navigate_to_menu" />
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

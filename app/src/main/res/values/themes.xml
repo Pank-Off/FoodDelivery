@@ -30,4 +30,22 @@
         <item name="android:textSize">13sp</item>
     </style>
 
+    <style name="OutlinedButtonStyle" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="textAllCaps">false</item>
+        <item name="android:textSize">15sp</item>
+        <item name="strokeColor">@color/main_color</item>
+        <item name="android:radius">6dp</item>
+        <item name="fontStyle">normal</item>
+    </style>
+
+    <style name="ChooseCityButton">
+        <item name="background">?selectableItemBackground</item>
+        <item name="backgroundTint">@color/white</item>
+        <item name="android:drawableEnd">@drawable/ic_arrow_down</item>
+        <item name="android:outlineProvider">none</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
 </resources>

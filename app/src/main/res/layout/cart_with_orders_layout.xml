@@ -15,14 +15,11 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/deliver_btn"
+            style="@style/OutlinedButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:backgroundTint="@color/main_color_20"
-            android:outlineProvider="none"
-            android:text="@string/deliver"
-            android:textColor="@color/main_color"
-            android:textSize="13sp"
-            android:textStyle="bold" />
+            android:text="@string/deliver" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

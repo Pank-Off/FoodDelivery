@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -60,7 +61,8 @@ class CartFragment : Fragment() {
                                     false
                                 )
                             adapter.setData(it.items)
-
+                            val dividerItemDecoration = DividerItemDecoration(context, LinearLayoutManager.VERTICAL)
+                            ordersRecycler.addItemDecoration(dividerItemDecoration)
                             ordersRecycler.adapter = adapter
                         }
 

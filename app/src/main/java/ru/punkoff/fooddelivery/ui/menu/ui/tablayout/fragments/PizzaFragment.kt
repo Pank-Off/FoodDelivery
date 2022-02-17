@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,6 +21,7 @@ import ru.punkoff.fooddelivery.ui.menu.ui.adapter.OnItemClickListener
 import ru.punkoff.fooddelivery.ui.menu.viewmodels.MenuViewModel
 import ru.punkoff.fooddelivery.utils.isOnline
 import java.net.SocketTimeoutException
+
 
 @AndroidEntryPoint
 class PizzaFragment : Fragment() {
@@ -100,6 +102,8 @@ class PizzaFragment : Fragment() {
                 }
 
             })
+            val dividerItemDecoration = DividerItemDecoration(context, LinearLayoutManager.VERTICAL)
+            pizzaRecycler.addItemDecoration(dividerItemDecoration)
             pizzaRecycler.adapter = menuAdapter
         }
     }

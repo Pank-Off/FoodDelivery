@@ -11,17 +11,11 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/city_btn"
+            style="@style/ChooseCityButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:background="?selectableItemBackground"
-            android:backgroundTint="@color/white"
-            android:drawableEnd="@drawable/ic_arrow_down"
-            android:outlineProvider="none"
             android:text="@string/moscow"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

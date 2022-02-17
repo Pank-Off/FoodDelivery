@@ -8,4 +8,5 @@
     <dimen name="tab_layout_height">32dp</dimen>
     <dimen name="tab_min_width">88dp</dimen>
     <dimen name="bottom_nav_size">56dp</dimen>
+    <dimen name="empty_cart_main_image_size">300dp</dimen>
 </resources>
