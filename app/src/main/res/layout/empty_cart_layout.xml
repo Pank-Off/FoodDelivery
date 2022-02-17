@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.cart.CartFragment">
+
+        <ImageView
+            android:id="@+id/empty_cart_image"
+            android:layout_width="@dimen/empty_cart_main_image_size"
+            android:layout_height="@dimen/empty_cart_main_image_size"
+            android:layout_gravity="center"
+            android:layout_marginTop="100dp"
+            android:src="@drawable/dodo_empty_cart" />
+
+        <TextView
+            android:id="@+id/ooh_empty_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/ohh_empty"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:paddingStart="70dp"
+            android:paddingEnd="70dp"
+            android:text="@string/description_to_empty_cart" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/navigate_to_menu_btn"
+            style="@style/OutlinedButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/main_color_20"
+            android:text="@string/navigate_to_menu" />
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

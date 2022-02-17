@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/bottom_nav_size"
+    tools:context=".ui.cart.CartFragment">
+
+    <include
+        android:id="@+id/empty_layout"
+        layout="@layout/empty_cart_layout"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/with_orders_layout"
+        layout="@layout/cart_with_orders_layout"
+        android:visibility="visible" />
+</FrameLayout>

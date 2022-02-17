@@ -1,6 +1,32 @@
 <resources>
     <string name="app_name">FoodDelivery</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_menu">Меню</string>
+    <string name="title_profile">Профиль</string>
+    <string name="title_cart">Корзина</string>
+    <string name="moscow">Москва</string>
+    <string name="pizza">Пицца</string>
+    <string name="combo">Комбо</string>
+    <string name="desserts">Десерты</string>
+    <string name="drinks">Напитки</string>
+    <string name="ham_and_mushrooms">Ветчина и грибы</string>
+    <string name="description_ham_and_mushrooms">Ветчина,шампиньоны, увеличинная порция моцареллы, томатный соус</string>
+
+    <string name="bavarian_sausages">Баварские колбаски</string>
+    <string name="description_bavarian_sausages">Баварские колбаски, ветчина,пикантная пепперони, острая чоризо,томатный соус</string>
+
+    <string name="tender_salmon">Нежный лосось</string>
+    <string name="description_tender_salmon">Лосось, томаты, оливки,соус песто,помидорки черри</string>
+    <string name="ohh_empty">Ой, пусто!</string>
+    <string name="description_to_empty_cart">Ваша корзина пуста, добавьте понравившийся товар из \"Меню\".</string>
+    <string name="navigate_to_menu">Перейти в меню</string>
+    <string name="add_to_cart">Добавлено в корзину</string>
+    <string name="deliver">Заказать</string>
+    <string name="thanks_for_order">Спасибо за заказ!</string>
+    <string name="ok">Ок</string>
+    <string name="update">Обновить</string>
+    <string name="no_internet_msg">Нет подключения к интернету\nПроверьте соединение</string>
+    <string name="network_exception">На сервере технические неполадки\nУже чиним!</string>
+    <string name="descriptionis_empty">Описание отсутствует</string>
+    <string name="price_is_empty">Цена не указана</string>
+
 </resources>
