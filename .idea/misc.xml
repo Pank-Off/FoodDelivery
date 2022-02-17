@@ -9,12 +9,14 @@
         <entry key="..\:/Users/panko/AndroidStudioProjects/FoodDelivery/app/src/main/res/drawable/ic_menu.xml" value="0.239" />
         <entry key="..\:/Users/panko/AndroidStudioProjects/FoodDelivery/app/src/main/res/drawable/ic_profile.xml" value="0.239" />
         <entry key="..\:/Users/panko/AndroidStudioProjects/FoodDelivery/app/src/main/res/drawable/ic_qr_code.xml" value="0.239" />
+        <entry key="..\:/Users/panko/AndroidStudioProjects/FoodDelivery/app/src/main/res/drawable/simple_item_decoration.xml" value="0.275" />
         <entry key="..\:/Users/panko/AndroidStudioProjects/FoodDelivery/app/src/main/res/drawable/tab_background.xml" value="0.239" />
         <entry key="..\:/Users/panko/AndroidStudioProjects/FoodDelivery/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/panko/AndroidStudioProjects/FoodDelivery/app/src/main/res/layout/cart_with_orders.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/panko/AndroidStudioProjects/FoodDelivery/app/src/main/res/layout/cart_with_orders_layout.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/panko/AndroidStudioProjects/FoodDelivery/app/src/main/res/layout/empty_cart_layout.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/panko/AndroidStudioProjects/FoodDelivery/app/src/main/res/layout/fragment_cart.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/panko/AndroidStudioProjects/FoodDelivery/app/src/main/res/layout/fragment_combo.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/panko/AndroidStudioProjects/FoodDelivery/app/src/main/res/layout/fragment_desserts.xml" value="0.16757246376811594" />
         <entry key="..\:/Users/panko/AndroidStudioProjects/FoodDelivery/app/src/main/res/layout/fragment_menu.xml" value="0.33" />
         <entry key="..\:/Users/panko/AndroidStudioProjects/FoodDelivery/app/src/main/res/layout/fragment_pizza.xml" value="0.271286231884058" />

@@ -11,7 +11,7 @@ class NetworkRepositoryImpl @Inject constructor(private val api: DeliveryApi) : 
     override suspend fun getMenu(): MenuViewState {
         return try {
             val data = mutableListOf<FoodModel>()
-            while (data.size != 1) {
+            while (data.size != 5) {
                 val id = (0..10000).random()
                 val food = api.getMenuItem(id).await()
 
