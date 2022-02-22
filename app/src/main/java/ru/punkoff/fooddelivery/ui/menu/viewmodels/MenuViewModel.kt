@@ -1,8 +1,10 @@
 package ru.punkoff.fooddelivery.ui.menu.viewmodels
 
-import androidx.lifecycle.MutableLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import ru.punkoff.fooddelivery.base.BaseViewModel
 import ru.punkoff.fooddelivery.model.FoodModel
@@ -15,12 +17,14 @@ class MenuViewModel @Inject constructor(
     private val repo: Repository
 ) : BaseViewModel() {
 
-    private val menuLiveData = MutableLiveData<MenuViewState>(MenuViewState.Loading)
+    private val _menuStateFlow = MutableStateFlow<MenuViewState>(MenuViewState.Loading)
+    val menuStateFlow = _menuStateFlow.asStateFlow()
+
     fun requestData() {
         cancelJob()
-        menuLiveData.value = MenuViewState.Loading
+        _menuStateFlow.value = MenuViewState.Loading
         viewModelCoroutineScope.launch(Dispatchers.IO) {
-            menuLiveData.postValue(repo.getMenu())
+            _menuStateFlow.value = repo.getMenu().getOrDefault(MenuViewState.EMPTY)
         }
     }
 
@@ -31,11 +35,11 @@ class MenuViewModel @Inject constructor(
         }
     }
 
-    fun observeLiveData() = menuLiveData
     fun getCachedData() {
         cancelJob()
         viewModelCoroutineScope.launch(Dispatchers.IO) {
-            menuLiveData.postValue(repo.getCachedData())
+            delay(3000)
+            _menuStateFlow.value = repo.getCachedData()
         }
     }
 }

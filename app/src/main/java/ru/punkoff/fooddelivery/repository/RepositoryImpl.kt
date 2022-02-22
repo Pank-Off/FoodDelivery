@@ -9,11 +9,12 @@ class RepositoryImpl @Inject constructor(
     private val networkRepository: NetworkRepository
 ) : Repository {
 
-    override suspend fun getMenu(): MenuViewState {
+    override suspend fun getMenu(): Result<MenuViewState> {
         val state = networkRepository.getMenu()
 
-        if (state is MenuViewState.Success) {
-            localRepository.saveCached(state.items)
+        if (state.isSuccess) {
+            val cache = state.getOrDefault(MenuViewState.EMPTY) as MenuViewState.Success
+            localRepository.saveCached(cache.items)
         }
         return state
     }
