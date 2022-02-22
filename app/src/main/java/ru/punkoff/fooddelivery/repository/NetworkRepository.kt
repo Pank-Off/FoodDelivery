@@ -1,7 +1,7 @@
 package ru.punkoff.fooddelivery.repository
 
-import ru.punkoff.fooddelivery.ui.menu.MenuViewState
+import kotlinx.coroutines.flow.Flow
 
 interface NetworkRepository {
-    suspend fun getMenu(): Result<MenuViewState>
+    fun getMenu(): Flow<NetworkState>
 }

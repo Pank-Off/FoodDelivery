@@ -24,7 +24,7 @@ class MenuViewModel @Inject constructor(
         cancelJob()
         _menuStateFlow.value = MenuViewState.Loading
         viewModelCoroutineScope.launch(Dispatchers.IO) {
-            _menuStateFlow.value = repo.getMenu().getOrDefault(MenuViewState.EMPTY)
+            _menuStateFlow.value = repo.getMenu()
         }
     }
 
