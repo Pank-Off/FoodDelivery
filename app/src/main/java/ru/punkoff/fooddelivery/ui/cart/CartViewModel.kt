@@ -1,8 +1,9 @@
 package ru.punkoff.fooddelivery.ui.cart
 
-import androidx.lifecycle.MutableLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import ru.punkoff.fooddelivery.base.BaseViewModel
 import ru.punkoff.fooddelivery.repository.Repository
@@ -14,20 +15,19 @@ class CartViewModel @Inject constructor(
     private val repo: Repository
 ) : BaseViewModel() {
 
-    private val cartLiveData = MutableLiveData<MenuViewState>(MenuViewState.Loading)
+    private val _cartStateFlow = MutableStateFlow<MenuViewState>(MenuViewState.Loading)
+    val cartStateFlow = _cartStateFlow.asStateFlow()
     fun requestData() {
         cancelJob()
         viewModelCoroutineScope.launch(Dispatchers.IO) {
-            cartLiveData.postValue(repo.getOrders())
+            _cartStateFlow.value = repo.getOrders()
         }
     }
 
     fun clearOrders() {
         cancelJob()
         viewModelCoroutineScope.launch(Dispatchers.IO) {
-            cartLiveData.postValue(repo.clearOrders())
+            _cartStateFlow.value = repo.clearOrders()
         }
     }
-
-    fun observeLiveData() = cartLiveData
 }

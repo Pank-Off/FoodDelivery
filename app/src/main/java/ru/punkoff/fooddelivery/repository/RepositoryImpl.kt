@@ -1,5 +1,7 @@
 package ru.punkoff.fooddelivery.repository
 
+import android.util.Log
+import kotlinx.coroutines.flow.collect
 import ru.punkoff.fooddelivery.model.FoodModel
 import ru.punkoff.fooddelivery.ui.menu.MenuViewState
 import javax.inject.Inject
@@ -10,12 +12,26 @@ class RepositoryImpl @Inject constructor(
 ) : Repository {
 
     override suspend fun getMenu(): MenuViewState {
-        val state = networkRepository.getMenu()
 
-        if (state is MenuViewState.Success) {
-            localRepository.saveCached(state.items)
+        val data = mutableListOf<FoodModel>()
+        var state: MenuViewState = MenuViewState.EMPTY
+        networkRepository.getMenu().collect {
+            when (it) {
+                is NetworkState.Error -> {
+                    it.throwable.printStackTrace()
+                    state = MenuViewState.ERROR(it.throwable)
+                    return@collect
+                }
+                is NetworkState.Success -> data.add(it.foodModel)
+            }
         }
-        return state
+        if (state is MenuViewState.ERROR) {
+            return state
+        }
+        Log.e(javaClass.simpleName, "DataSize: ${data.size}")
+        localRepository.saveCached(data)
+
+        return MenuViewState.Success(data)
     }
 
     override suspend fun insertToCart(model: FoodModel) {
