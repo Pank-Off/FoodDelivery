@@ -21,7 +21,7 @@ import ru.punkoff.fooddelivery.ui.menu.MenuViewState
 import ru.punkoff.fooddelivery.ui.menu.ui.adapter.MenuAdapter
 import ru.punkoff.fooddelivery.ui.menu.ui.adapter.OnItemClickListener
 import ru.punkoff.fooddelivery.ui.menu.viewmodels.MenuViewModel
-import ru.punkoff.fooddelivery.utils.addRepeatedJob
+import ru.punkoff.fooddelivery.utils.collectFlow
 import ru.punkoff.fooddelivery.utils.isOnline
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
@@ -57,38 +57,36 @@ class PizzaFragment : Fragment() {
                 .setAction(getString(R.string.update)) { viewModel.requestData() }.show()
         }
 
-        viewLifecycleOwner.addRepeatedJob(Lifecycle.State.STARTED) {
-            viewModel.menuStateFlow.collect {
-                when (it) {
-                    MenuViewState.EMPTY -> {}
-                    MenuViewState.Loading -> menuAdapter.loadingData()
+        collectFlow(viewModel.menuStateFlow, Lifecycle.State.STARTED) {
+            when (it) {
+                MenuViewState.EMPTY -> {}
+                MenuViewState.Loading -> menuAdapter.loadingData()
 
-                    is MenuViewState.Success -> {
-                        Log.e(javaClass.simpleName, it.items.toString())
-                        menuAdapter.setData(it.items)
-                        binding.swipeRefreshLayout.isRefreshing = false
-                    }
-                    is MenuViewState.ERROR -> {
-                        viewModel.getCachedData()
-                        when (it.exc) {
-                            is HttpException -> {
-                                binding.swipeRefreshLayout.isRefreshing = false
-                                Snackbar.make(
-                                    view,
-                                    getString(R.string.network_exception), Snackbar.LENGTH_SHORT
-                                )
-                                    .setAction(getString(R.string.update)) { viewModel.requestData() }
-                                    .show()
-                            }
+                is MenuViewState.Success -> {
+                    Log.e(javaClass.simpleName, it.items.toString())
+                    menuAdapter.setData(it.items)
+                    binding.swipeRefreshLayout.isRefreshing = false
+                }
+                is MenuViewState.ERROR -> {
+                    viewModel.getCachedData()
+                    when (it.exc) {
+                        is HttpException -> {
+                            binding.swipeRefreshLayout.isRefreshing = false
+                            Snackbar.make(
+                                view,
+                                getString(R.string.network_exception), Snackbar.LENGTH_SHORT
+                            )
+                                .setAction(getString(R.string.update)) { viewModel.requestData() }
+                                .show()
+                        }
 
-                            is SocketTimeoutException, is UnknownHostException -> {
-                                Snackbar.make(
-                                    view,
-                                    getString(R.string.no_internet_msg), Snackbar.LENGTH_SHORT
-                                )
-                                    .setAction(getString(R.string.update)) { viewModel.requestData() }
-                                    .show()
-                            }
+                        is SocketTimeoutException, is UnknownHostException -> {
+                            Snackbar.make(
+                                view,
+                                getString(R.string.no_internet_msg), Snackbar.LENGTH_SHORT
+                            )
+                                .setAction(getString(R.string.update)) { viewModel.requestData() }
+                                .show()
                         }
                     }
                 }

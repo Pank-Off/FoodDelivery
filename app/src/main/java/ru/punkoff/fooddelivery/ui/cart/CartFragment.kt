@@ -6,18 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import ru.punkoff.fooddelivery.MainActivity
 import ru.punkoff.fooddelivery.R
 import ru.punkoff.fooddelivery.databinding.FragmentCartBinding
 import ru.punkoff.fooddelivery.ui.menu.MenuViewState
 import ru.punkoff.fooddelivery.ui.menu.ui.adapter.MenuAdapter
-import ru.punkoff.fooddelivery.utils.addRepeatedJob
+import ru.punkoff.fooddelivery.utils.collectFlow
 import ru.punkoff.fooddelivery.utils.isOnline
 
 @AndroidEntryPoint
@@ -43,37 +41,36 @@ class CartFragment : Fragment() {
         viewModel.requestData()
 
         with(binding) {
-            viewLifecycleOwner.addRepeatedJob(Lifecycle.State.STARTED) {
-                viewModel.cartStateFlow.collect {
-                    when (it) {
-                        MenuViewState.EMPTY -> {
-                            withOrdersLayout.root.visibility = View.GONE
-                            emptyLayout.root.visibility = View.VISIBLE
-                        }
-                        MenuViewState.Loading -> {
-                            adapter.loadingData()
-                        }
-                        is MenuViewState.Success -> {
-                            withOrdersLayout.root.visibility = View.VISIBLE
-                            emptyLayout.root.visibility = View.GONE
 
-                            with(withOrdersLayout) {
-                                ordersRecycler.layoutManager =
-                                    LinearLayoutManager(
-                                        context,
-                                        LinearLayoutManager.VERTICAL,
-                                        false
-                                    )
-                                adapter.setData(it.items)
-                                val dividerItemDecoration =
-                                    DividerItemDecoration(context, LinearLayoutManager.VERTICAL)
-                                ordersRecycler.addItemDecoration(dividerItemDecoration)
-                                ordersRecycler.adapter = adapter
-                            }
-
-                        }
-                        is MenuViewState.ERROR -> it.exc.printStackTrace()
+            collectFlow(viewModel.cartStateFlow) {
+                when (it) {
+                    MenuViewState.EMPTY -> {
+                        withOrdersLayout.root.visibility = View.GONE
+                        emptyLayout.root.visibility = View.VISIBLE
                     }
+                    MenuViewState.Loading -> {
+                        adapter.loadingData()
+                    }
+                    is MenuViewState.Success -> {
+                        withOrdersLayout.root.visibility = View.VISIBLE
+                        emptyLayout.root.visibility = View.GONE
+
+                        with(withOrdersLayout) {
+                            ordersRecycler.layoutManager =
+                                LinearLayoutManager(
+                                    context,
+                                    LinearLayoutManager.VERTICAL,
+                                    false
+                                )
+                            adapter.setData(it.items)
+                            val dividerItemDecoration =
+                                DividerItemDecoration(context, LinearLayoutManager.VERTICAL)
+                            ordersRecycler.addItemDecoration(dividerItemDecoration)
+                            ordersRecycler.adapter = adapter
+                        }
+
+                    }
+                    is MenuViewState.ERROR -> it.exc.printStackTrace()
                 }
             }
             emptyLayout.navigateToMenuBtn.setOnClickListener {
